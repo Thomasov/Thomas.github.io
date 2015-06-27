@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--jQuery Core-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!--Bootstrap-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <title>DnD</title>
+
+    <script type="text/javascript">
+        var circles = [];
+        var targetColor = '';
+        $(function () {
+            createGrid(50);
+            var colors = {
+                "gray": 'rgb(204, 204, 204)',
+                "blue": 'rgb(49, 58, 117)',
+                "green": 'rgb(17, 102, 17)',
+                'red': 'rgb(170, 57, 57)',
+            }
+            $('body').dblclick(function (event) {
+                if (event.target.className == "gridBox") {
+                    var $target = $(event.target);
+                    targetColor = $target.css('background-color').trim();
+                    if (targetColor == "transparent") {
+                        $target.css('background-color', colors.gray);
+                    }
+                    else if (targetColor == colors.gray) {
+                        $target.css('background-color', colors.blue);
+                    }
+                    else {
+                        $target.css('background-color', 'transparent');
+                    }
+                }
+            });
+            function createGrid(size) {
+                var ratioW = Math.floor(($(window).width() / 1.5) / size),
+                    ratioH = Math.floor($(window).height() / size);
+                var parent = $('<div />', {
+                    class: 'grid',
+                    width: ratioW * size,
+                    height: ratioH * size
+                }).prependTo('body');
+
+                for (var i = 0; i < ratioH; i++) {
+                    for (var p = 0; p < ratioW; p++) {
+                        $('<div />', {
+                            class: 'gridBox',
+                            width: size - 1,
+                            height: size - 1
+                        }).appendTo(parent);
+                    }
+                }
+            }
+        });
+        function addCircle() {
+            var name = prompt("Please enter a name for the new circle.");
+            var bgColor = Math.floor(Math.random() * 16777215).toString(16);
+            var newCircle = $('<div class="circle" style="background-color:#' + bgColor + ';">' + name + '</div>').prependTo('body');
+            newCircle.draggable({ grid: [50, 50] });
+            circles.push(newCircle);
+            updateCircleList();
+        }
+        function removeCircle(index) {
+            $(circles[index]).remove();
+            circles[index] = null;
+            updateCircleList();
+        }
+        function updateCircleList() {
+            var $circlesList = $('#circles');
+            $circlesList.empty();
+            for (i = 0; i < circles.length; i++) {
+                if (circles[i] != null) {
+                    $circlesList.append('<li>' + $(circles[i]).text() + '<span class="x" onclick="removeCircle(' + i + ');">x</span></li>');
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .grid {
+            border: 1px solid #ccc;
+            border-width: 1px 0 0 1px;
+            float: left;
+        }
+
+            .grid div {
+                border: 1px solid #ccc;
+                border-width: 0 1px 1px 0;
+                float: left;
+            }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 15px;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+            background: #000;
+            cursor: pointer;
+            /*Text Select Off*/
+            -webkit-user-select: none; /* Chrome/Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+ */
+            /* Rules below not implemented in browsers yet */
+            -o-user-select: none;
+            user-select: none;
+            position: absolute;
+        }
+
+        .x {
+            margin-left: 10px;
+            color: #FF6E6E;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <h2>Menu</h2>
+        <button onclick="addCircle()">Add Circle</button>
+        <ul id="circles" style="list-style:none;"></ul>
+    </div>
+</body>
+</html>

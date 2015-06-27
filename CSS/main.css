@@ -2,7 +2,7 @@ body {
 	font-family: "Lato",Arial,sans-serif;
 }
 h1, h2, h3, h4 {
-	color: #4E2E7E;
+	color: #4F2E7F;
 	font-variant: small-caps;
 }
 a {
@@ -23,6 +23,19 @@ ul li {
 .move-right {
 	padding-left: 3.5em;
 	text-align: left;
+}
+.header-block {
+	background-color: #4F2E7F;
+	color: #FFF;
+	border-radius: 4px;
+	padding:10px 0px 10px 10px;
+	/*text-align: center;*/
+}
+.header-block .col-lg-6 {
+	border-right: 
+}
+.header-block h2,h3{
+	color: #FFF;
 }
 hr {
 	border-color: rgba(140, 115, 178, .2);
@@ -53,9 +66,6 @@ hr {
 	#page-header {
 		display: inline;
 		font-size: 42px;
-	}
-	#banner {
-		line-height: 42px;
 	}
 }
 @media (min-width:1025px) {
