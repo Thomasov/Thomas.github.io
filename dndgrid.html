@@ -13,24 +13,21 @@
         var targetColor = '';
         $(function () {
             createGrid(50);
-            var colors = {
-                "gray": 'rgb(204, 204, 204)',
-                "blue": 'rgb(49, 58, 117)',
-                "green": 'rgb(17, 102, 17)',
-                'red': 'rgb(170, 57, 57)',
-            }
             $('body').dblclick(function (event) {
                 if (event.target.className == "gridBox") {
                     var $target = $(event.target);
+                    var white = $('#White').css('background-color');
+                    var gray = $('#Gray').css('background-color');
+                    var blue = $('#Blue').css('background-color');
                     targetColor = $target.css('background-color').trim();
-                    if (targetColor == "transparent") {
-                        $target.css('background-color', colors.gray);
+                    if (targetColor == white) {
+                        $target.css('background-color', gray);
                     }
-                    else if (targetColor == colors.gray) {
-                        $target.css('background-color', colors.blue);
+                    else if (targetColor == gray) {
+                        $target.css('background-color', blue);
                     }
                     else {
-                        $target.css('background-color', 'transparent');
+                        $target.css('background-color', white);
                     }
                 }
             });
@@ -117,6 +114,18 @@
             color: #FF6E6E;
             cursor: pointer;
         }
+        .hiddenColor {
+        	display:none;
+        }
+        #White {
+        	background-color: transparent;
+        }
+        #Gray {
+        	background-color: rgb(204, 204, 204);
+        }
+        #Blue {
+        	background-color: rgb(49, 58, 117);
+        }
     </style>
 </head>
 
@@ -126,5 +135,12 @@
         <button onclick="addCircle()">Add Circle</button>
         <ul id="circles" style="list-style:none;"></ul>
     </div>
+    <div class="hiddenColor" style="" id="White">
+    </div>
+    <div class="hiddenColor" style="" id="Gray">
+    </div>
+    <div class="hiddenColor" style="" id="Blue">
+    </div>
+
 </body>
 </html>
