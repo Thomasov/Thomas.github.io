@@ -12,6 +12,28 @@
         var circles = [];
         var targetColor = '';
         $(function () {
+
+            var dialog = $("#dialog-form").dialog({
+                title: 'Add Circle',
+                autoOpen: false,
+                closeOnEscape: true,
+                height: 300,
+                width: 350,
+                modal: true,
+                buttons: {
+                    "Done": function () {
+                        addCircle($('#Name').val(), $('input[name="size"]:checked').val())
+                        $('#Name').val('');
+                        $('#Normal').prop('checked', 'checked');
+                        dialog.dialog("close");
+                    },
+                    "Cancel": function () {
+                        dialog.dialog("close");
+                    }
+                },
+                close: function () {
+                }
+            });
             createGrid(50);
             $('body').dblclick(function (event) {
                 if (event.target.className == "gridBox") {
@@ -30,6 +52,9 @@
                         $target.css('background-color', white);
                     }
                 }
+            });
+            $('#addCircle').click(function () {
+                dialog.dialog("open");
             });
             function createGrid(size) {
                 var ratioW = Math.floor(($(window).width() / 1.5) / size),
@@ -51,19 +76,20 @@
                 }
             }
         });
-        function addCircle() {
-            var name = prompt("Please enter a name for the new circle.");
+        function addCircle(name, size) {
             var bgColor = Math.floor(Math.random() * 16777215).toString(16);
-            var newCircle = $('<div class="circle" style="background-color:#' + bgColor + ';">' + name + '</div>').prependTo('body');
+            var newCircle = $('<div class="circle '+ size +'" style="background-color:#' + bgColor + ';">' + name + '</div>').prependTo('body');
             newCircle.draggable({ grid: [50, 50] });
             circles.push(newCircle);
             updateCircleList();
         }
+
         function removeCircle(index) {
             $(circles[index]).remove();
             circles[index] = null;
             updateCircleList();
         }
+
         function updateCircleList() {
             var $circlesList = $('#circles');
             $circlesList.empty();
@@ -89,12 +115,9 @@
             }
 
         .circle {
-            width: 50px;
-            height: 50px;
             border-radius: 50%;
             font-size: 15px;
             color: #fff;
-            line-height: 50px;
             text-align: center;
             background: #000;
             cursor: pointer;
@@ -109,22 +132,38 @@
             position: absolute;
         }
 
+        .Large {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        .Normal {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
         .x {
             margin-left: 10px;
             color: #FF6E6E;
             cursor: pointer;
         }
+
         .hiddenColor {
-        	display:none;
+            display: none;
         }
+
         #White {
-        	background-color: transparent;
+            background-color: transparent;
         }
+
         #Gray {
-        	background-color: rgb(204, 204, 204);
+            background-color: rgb(204, 204, 204);
         }
+
         #Blue {
-        	background-color: rgb(49, 58, 117);
+            background-color: rgb(49, 58, 117);
         }
     </style>
 </head>
@@ -132,15 +171,22 @@
 <body>
     <div id="menu">
         <h2>Menu</h2>
-        <button onclick="addCircle()">Add Circle</button>
+        <button id="addCircle">Add Circle</button>
         <ul id="circles" style="list-style:none;"></ul>
     </div>
-    <div class="hiddenColor" style="" id="White">
-    </div>
-    <div class="hiddenColor" style="" id="Gray">
-    </div>
-    <div class="hiddenColor" style="" id="Blue">
-    </div>
+    <div class="hiddenColor" style="" id="White"></div>
+    <div class="hiddenColor" style="" id="Gray"></div>
+    <div class="hiddenColor" style="" id="Blue"></div>
+    <div id="dialog-form" title="Create new user">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="Name" class="text ui-widget-content ui-corner-all"><br />
+            <label for="Normal">Normal</label>
+            <input type="radio" name="size" value="Normal" checked="checked" id="Normal" />
+            <label for="Large">Large</label>
+            <input type="radio" name="size" value="Large" id="Large" />
 
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
+    </div>
 </body>
 </html>
