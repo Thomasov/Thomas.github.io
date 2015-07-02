@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>DnD</title>
     <!--jQuery Core-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- jQuery UI -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <title>DnD</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="dndgrid.css">
 
     <script type="text/javascript">
         var circles = [];
@@ -57,10 +59,10 @@
                 dialog.dialog("open");
             });
             function createGrid(size) {
-                var ratioW = Math.floor(($(window).width() / 1.5) / size),
+                var ratioW = Math.floor(($(window).width() * .75) / size),
                     ratioH = Math.floor($(window).height() / size);
                 var parent = $('<div />', {
-                    class: 'grid',
+                    'class': 'grid',
                     width: ratioW * size,
                     height: ratioH * size
                 }).prependTo('body');
@@ -100,7 +102,6 @@
             }
         }
     </script>
-    <link rel="stylesheet" type="text/css" href="dndgrid.css">
 </head>
 
 <body>
