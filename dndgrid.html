@@ -14,7 +14,7 @@
         var circles = [];
         var targetColor = '';
         $(function () {
-
+            var mousedown = false;
             var dialog = $("#dialog-form").dialog({
                 title: 'Add Circle',
                 autoOpen: false,
@@ -37,22 +37,21 @@
                 }
             });
             createGrid(50);
-            $('body').dblclick(function (event) {
-                if (event.target.className == "gridBox") {
-                    var $target = $(event.target);
-                    var white = $('#White').css('background-color');
-                    var gray = $('#Gray').css('background-color');
-                    var blue = $('#Blue').css('background-color');
-                    targetColor = $target.css('background-color').trim();
-                    if (targetColor == white) {
-                        $target.css('background-color', gray);
+            $('body').mousedown(function () {
+                mousedown = true;
+            }).mouseup(function () {
+                mousedown = false;
+            });
+            $('body').on("mousemove mousedown", function (event) {
+                var x = event.clientX;
+                var y = event.clientY;
+                var $target = $(document.elementFromPoint(x, y));
+                if ($target.attr('class') == "gridBox" && mousedown) {
+                    var color = $('#Gray').css('background-color');
+                    if (event.buttons == 2) {
+                        color = $('#White').css('background-color');
                     }
-                    else if (targetColor == gray) {
-                        $target.css('background-color', blue);
-                    }
-                    else {
-                        $target.css('background-color', white);
-                    }
+                    $target.css('background-color', color);
                 }
             });
             $('#addCircle').click(function () {
@@ -104,7 +103,7 @@
     </script>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <div id="menu">
         <h2>Menu</h2>
         <button id="addCircle">Add Circle</button>
@@ -114,15 +113,15 @@
     <div class="hiddenColor" style="" id="Gray"></div>
     <div class="hiddenColor" style="" id="Blue"></div>
     <div id="dialog-form" title="Create new user">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="Name" class="text ui-widget-content ui-corner-all"><br />
-            <label for="Normal">Normal</label>
-            <input type="radio" name="size" value="Normal" checked="checked" id="Normal" />
-            <label for="Large">Large</label>
-            <input type="radio" name="size" value="Large" id="Large" />
+        <label for="name">Name</label>
+        <input type="text" name="name" id="Name" class="text ui-widget-content ui-corner-all"><br />
+        <label for="Normal">Normal</label>
+        <input type="radio" name="size" value="Normal" checked="checked" id="Normal" />
+        <label for="Large">Large</label>
+        <input type="radio" name="size" value="Large" id="Large" />
 
-            <!-- Allow form submission with keyboard without duplicating the dialog button -->
-            <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
+        <!-- Allow form submission with keyboard without duplicating the dialog button -->
+        <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
     </div>
 </body>
 </html>
