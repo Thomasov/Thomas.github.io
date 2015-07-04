@@ -13,6 +13,7 @@
     <script type="text/javascript">
         var circles = [];
         var targetColor = '';
+        var grid;
         $(function () {
             var mousedown = false;
             var dialog = $("#dialog-form").dialog({
@@ -37,18 +38,23 @@
                 }
             });
             createGrid(50);
-            $('body').mousedown(function () {
-                mousedown = true;
-            }).mouseup(function () {
+            $('body').mouseup(function () {
                 mousedown = false;
             });
+            //**************************************************//
+            //*********************Paint************************//
+            //**************************************************//
             $('body').on("mousemove mousedown", function (event) {
+                if (event.originalEvent.type == "mousedown") {
+                    mousedown = true;
+                }
                 var x = event.clientX;
                 var y = event.clientY;
                 var $target = $(document.elementFromPoint(x, y));
-                if ($target.attr('class') == "gridBox" && mousedown) {
+                if ($target.attr('class') == "gridBox" && mousedown && $('.ui-draggable-dragging').length == 0) {
                     var color = $('#Gray').css('background-color');
                     if (event.buttons == 2) {
+                        
                         color = $('#White').css('background-color');
                     }
                     $target.css('background-color', color);
@@ -57,10 +63,19 @@
             $('#addCircle').click(function () {
                 dialog.dialog("open");
             });
+            $('#Name').keyup(function (event) {
+                if (event.which == 13) {
+                    $('.ui-dialog-buttonset button')[0].click();
+                    //addCircle($('#Name').val(), $('input[name="size"]:checked').val())
+                    //$('#Name').val('');
+                    //$('#Normal').prop('checked', 'checked');
+                    //dialog.dialog("close");
+                }
+            })
             function createGrid(size) {
                 var ratioW = Math.floor(($(window).width() * .75) / size),
                     ratioH = Math.floor($(window).height() / size);
-                var parent = $('<div />', {
+                grid = $('<div />', {
                     'class': 'grid',
                     width: ratioW * size,
                     height: ratioH * size
@@ -72,15 +87,18 @@
                             class: 'gridBox',
                             width: size - 1,
                             height: size - 1
-                        }).appendTo(parent);
+                        }).appendTo(grid);
                     }
                 }
             }
         });
         function addCircle(name, size) {
             var bgColor = Math.floor(Math.random() * 16777215).toString(16);
-            var newCircle = $('<div class="circle '+ size +'" style="background-color:#' + bgColor + ';">' + name + '</div>').prependTo('body');
-            newCircle.draggable({ grid: [50, 50] });
+            var newCircle = $('<div class="circle ' + size + '" style="background-color:#' + bgColor + ';">' + name + '</div>').prependTo(grid);
+            newCircle.draggable({
+                grid: [50, 50],
+                containment: "parent"
+            });
             circles.push(newCircle);
             updateCircleList();
         }
