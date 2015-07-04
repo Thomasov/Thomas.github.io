@@ -79,13 +79,12 @@ body {
     height: 50px;
     width: 50px;
     border: 1px solid #ccc;
-    display:inline-block;
+    display: inline-block;
 }
 
 #leftClick {
     background-color: #CCC;
 }
-
 /*UI DIALOG CSS*/
 .ui-dialog {
     height: auto;
