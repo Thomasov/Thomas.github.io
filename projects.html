@@ -23,6 +23,7 @@
     .back-link {
       margin-top: 15px; 
     }
+}
   </style>
   <script type="text/javascript">
     $(function(){
@@ -51,31 +52,41 @@
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="row tab-pane active" id="webdev">
+              <div class="col-md-6">
+          <h2>Auburn Global Testing Suite</h2>
+          <p class="help-block">Fall 2015</p>
+          <p>
+            AU Global is a web application used to give placement or admission exams to students overseas that are seeking to attend Auburn University. It is a C# .NET site that is heavily driven by Knockout.js. The client is free to add a test, or edit any questions on an existing test, at their leisure. The site also provides extensive reporting for the administrators to see which questions are frequently missed, or to see how a specific individual did on a test they took. To render the questions on the test, LaTeX and a heavily modified version of <a href="http://www.html5canvastutorials.com/labs/html5-canvas-graphing-an-equation/" target="_blank">this equation grapher</a> were used. Unfortunately, due the nature of the application, it's not possible to view the testing page or admin functionality without a valid login, so I've uploaded some screenshots to see some high points.
+          </p>
+          <div class="text-center big-link"><a href="https://cws.auburn.edu/auglobal" target="_blank">Link to site</a><span> | </span><a href="projects/auglobal.html">Screenshots</a></div>
+        </div>
         <div class="col-md-6">
           <h2>Olympic Weights</h2>
           <p class="help-block">Fall 2015</p>
-          <p>Olympic Weights is a mobile application written in Apache Cordova with an accompanying .NET web application for admin functionality. I also rolled my own generic MVC framework to be used in this and future Cordova apps. Once fully tested, I plan to open source the framework for others to use and modify as they will. Unfortunately, due the nature of the application, I'm not allowed to give out logins to anyone who wants to see it. But I've uploaded some screenshots of the mobile app to get an idea of the theme. All of the screenshots are from the iOS version of the app.</p>
-          <p class="text-center"><a href="olympicweights.html" class="big-link">View Screenshots</a></p>
+          <p>Olympic Weights is a mobile app written to manage the scheduling of weight rooms between different sports teams at Auburn University. It was written using Apache Cordova and also has an accompanying .NET web application for admin functionality and API calls. Also heavily used is a self written MVC framework designed to quickly make multi-paged Cordova applications. Once fully tested, the plan is to open source the framework for others to use and modify as they will. Since the entire application is behind a login wall, I've uploaded some screenshots of the mobile app to get a feel for it. All of the screenshots are from the iOS version of the app, but there is a working Android version as well.</p>
+          <div class="text-center big-link"><a href="projects/olympicweights.html">View Screenshots</a></div>
         </div>
         <div class="col-md-6">
           <h2>Auburn Office of Accessibility</h2>
           <p class="help-block">July 2014</p>
-          <p>Auburn University's Office of Accessibility C# .NET web application that I wrote early in my career as a web developer. There's not a lot to it, but I'm proud of a lot of the little things in it. It boasts a dynamic system for adding pages that the client can do easily without ever touching any code. They can also manage many other aspects of the site, including but not limited to the number of links on the home page, images in the slideshow, and news articles on the home page. All of this information is stored in an SQL Server database.</p>
-          <p class="text-center"><a href="https://cws.auburn.edu/accessibility" class="big-link" target="_blank">Link to site</a></p>
+          <p>Auburn University's Office of Accessibility site is a C# .NET web application that I wrote early in my career as a web developer. There's not a lot to it, but I'm proud of a lot of the little things in it. It boasts a dynamic system for adding, removing, and editing data driven pages that the client can easily use without ever touching any code. They can also manage many other aspects of the site on their own, including but not limited to the number of links on the home page, images in the slideshow, and news articles on the home page.</p>
+          <div class="text-center big-link"><a href="https://cws.auburn.edu/accessibility" target="_blank">Link to site</a></div>
         </div>
+        <hr />
+
       </div>
       <div role="tabpanel" class="row tab-pane" id="gamedev">
         <div class="col-md-6">
           <h2>Endless Runner</h2>
           <p class="help-block">July 2015</p>
           <p>This is an endless runner game I built in Unity 5 by following a tutorial by Jesse Freeman on Lynda.com and then expanding on it. All of the implementation was done in C#. The system was built modularly so that the various components, such as the time manager, object pool, and menu manager, could be reused in other future projects. The artwork is almost exclusively not mine (credit to Jesse Freeman), but I did draw the art for the barrel that sometimes appears as an obstacle and the artwork for the pause screen during a forray I had into pixel art. </p>
-          <p class="text-center"><a href="runner.html" class="big-link">Link to game</a></p>
+          <div class="text-center big-link"><a href="projects/runner.html">Link to game</a></div>
         </div>
         <div class="col-md-6">
          <h2>Plight of the Tauren</h2>
          <p class="help-block">Around 2008</p>
-         <p>A custom Warcraft III campaign based on the conflict between the Tauren and the Centaur in the Barrens. Created in the WCIII World Editor, it has scripted cut scenes and optional quests. Plays very similarly to the already in-game campaigns. All art is owned by Blizzard Entertainment, with the exception of the model of the main character, the Gnome Mage, who was created by user Norinrad on <a href="http://www.hiveworkshop.com">the hive workshop</a>. The first level of the campaign is available for download below; you'll need to make sure you have Warcraft III installed to use it.</p>
-         <p class="text-center"><a href="tauren.w3x" class="big-link">Download First Level</a></p>
+         <p>A custom Warcraft III campaign based on the conflict between the Tauren and the Centaur in the Barrens. Created in the WCIII World Editor, it has scripted cut scenes and optional quests. It plays very similarly to the already in-game, Blizzard created, campaigns. All art is owned by Blizzard Entertainment, with the exception of the model of the main character, the Gnome Mage, who was created by user Norinrad on <a href="http://www.hiveworkshop.com">the hive workshop</a>. The first level of the campaign is available for download below; you'll need to make sure you have Warcraft III installed to use it.</p>
+         <div class="text-center big-link"><a href="projects/tauren.w3x">Download First Level</a></div>
         </div>
       </div>
       <div role="tabpanel" class="row tab-pane" id="other">
