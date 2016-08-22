@@ -14,56 +14,54 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <style>
            #carousel .carousel-caption {
-            position: absolute;
-            top: 0;
-            padding-top: 0px;
-        }
+                position: absolute;
+                top: 0;
+                padding-top: 0px;
+            }
         </style>
+        <link rel="stylesheet" href="../css/gallery.css" />
+        <script src="../js/gallery.js"></script>
     </head>
     <body>
         <div class="container">
             <p class="back-link" style="margin-top:15px;"><a href="../projects.html">Back to projects page</a></p>
             <h1>Auburn Global</h1>
-            <p class="help-block">Fall 2015</p>
+            <p class="help-block">Fall 2015  | <a href="https://cws.auburn.edu/auglobal" target="_blank">Link to site</a></p>
             <hr />
-            <div id="carousel" class="carousel slide" data-ride="carousel">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active" id="select-test">
-                        <img src="../images/auglobal/SelectTest.png" alt="Select Test Page" />
+            <div id="gallery">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img id="cats" src="../images/auglobal/SelectTest.png" />
                     </div>
-                    <div class="item" id="start-test">
-                        <img src="../images/auglobal/StartTest.png" alt="Start Test Page" />
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/StartTest.png" />
                     </div>
-                    <div class="item" id="test">
-                        <img src="../images/auglobal/Test.png" alt="Test Page" />
-                    </div>
-                    <div class="item" id="test-graph">
-                        <img src="../images/auglobal/TestGraph.png" alt="Test Page with Graph" />
-                    </div>
-                    <div class="item" id="test-graph-shaded">
-                        <img src="../images/auglobal/GraphShaded.png" alt="Test Page with Shaded Graph" />
-                    </div>
-                    <div class="item" id="bar-chart">
-                        <div class="carousel-caption">
-                            <h3>Reporting</h3>
-                            <p>A bar chart showing the breakdown on how often each question was answered correctly or incorrectly.</p>
-                        </div>
-                        <img src="../images/auglobal/BarChart.png" alt="Answers Bar Chart" />
-
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/Test.png" />
                     </div>
                 </div>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/TestGraph.png" />
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/GraphShaded.png" />
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/Answers.png" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="../images/auglobal/BarChart.png" />
+                    </div>
+                </div>
+
+            </div>
+            <div id="overlay">
+                <span class="glyphicon glyphicon-remove" id="close-overlay-btn"></span>
+                <img id="big-image" src="" />                    
             </div>
         </div>
-        
     </body>
 </html>
