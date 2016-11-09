@@ -1,4 +1,5 @@
 window.onload = function() {
+    console.log("loaded");
     var overlay = document.getElementById("overlay");
     var gallery = document.getElementById("gallery");
     var bigImage = document.getElementById("big-image");
